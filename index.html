@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Input Form</title>
+</head>
+<body>
+    <h1>Enter Your Details</h1>
+    <form id="data-form">
+        <label for="name">Name:</label>
+        <input type="text" id="name" required><br>
+
+        <label for="Taluka">Taluka:</label>
+        <input type="text" id="Taluka" required><br>
+
+        <label for="District">District:</label>
+        <input type="text" id="District" required><br>
+
+        <label for="state">State:</label>
+        <input type="text" id="state" required><br>
+
+        <input type="submit" value="Generate QR Code">
+    </form>
+
+    <div id="qrcode"></div>
+
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+    <script>
+        document.getElementById('data-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const Taluka = document.getElementById('Taluka').value;
+            const District = document.getElementById('District').value;
+            const state = document.getElementById('state').value;
+
+            const data = `Name: ${name}, Taluka: ${Taluka}, District: ${District}, State: ${state}`;
+            
+            const qrcode = new QRCode("qrcode", {
+                text: `https://ayush64605.github.io/ssip6/?data=${encodeURIComponent(data)}`,
+                width: 128,
+                height: 128
+            });
+        }
+        );
+    </script>
+</body>
+</html>
